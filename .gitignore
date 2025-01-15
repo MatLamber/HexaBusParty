@@ -79,3 +79,7 @@ Test.io/Library/
 Test.io/Temp/
 
 Test.io/Recordings/
+/HexaBusParty/Library
+*.mp4
+/HexaBusParty/Logs
+/HexaBusParty/obj
