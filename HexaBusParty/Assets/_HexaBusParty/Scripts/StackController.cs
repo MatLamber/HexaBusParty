@@ -75,13 +75,13 @@ public class StackController : MonoBehaviour
         }
         else
         {
-            DragginAboveFreeCell(gridCell);
+            DragginAboveFreeCell(gridCell, hit);
         }
     }
 
-    private void DragginAboveFreeCell(GridCell gridCell)
+    private void DragginAboveFreeCell(GridCell gridCell, RaycastHit hit)
     {
-        Vector3 currenTargerPostion = gridCell.transform.position.With(y:2);
+        Vector3 currenTargerPostion = hit.point.With(y: 2);
         currentStack.transform.position =
             Vector3.MoveTowards(currentStack.transform.position, currenTargerPostion, Time.deltaTime * 30);
         targetCell = gridCell;
@@ -97,7 +97,7 @@ public class StackController : MonoBehaviour
             return;
         }
 
-        Vector3 stackTargetPosition = hit.point.With(y: 2);
+        Vector3 stackTargetPosition = hit.point.With(y: 1.8f);
         currentStack.transform.position =
             Vector3.MoveTowards(currentStack.transform.position, stackTargetPosition, Time.deltaTime * 30);
         targetCell = null;
