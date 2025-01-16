@@ -60,7 +60,7 @@ public class PassengerManagers : MonoBehaviour
 
     IEnumerator PassengerlineUpdateCoroutine()
     {
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(3f);
         UpgdatePassengersList();
         MovePassengersLine();
         RotateFirsPassengerTowardTheBus();
