@@ -13,6 +13,8 @@ public class GirdGenerator : MonoBehaviour
     [OnValueChanged(nameof(GenerateGrid))]
     [SerializeField] private int gridSize;
 
+    [SerializeField] private List<Color> hexagonColors;
+
     private void GenerateGrid()
     {
         transform.Clear(); // Destruye todos los child que tenga el transform
