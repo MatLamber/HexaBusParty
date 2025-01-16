@@ -46,7 +46,7 @@ public class MergeManager : MonoBehaviour
             GetHexagonsToAdd(gridCellTopHexagonColor, neighborGridCells, similarNeighborGridCells);
         RemoveHexagonsFromStacks(similarNeighborGridCells, hexagonsToAdd);
         MoveHexagons(gridCell, hexagonsToAdd);
-        yield return new WaitForSeconds(((hexagonsToAdd.Count + 1) * .1f) + .8f);
+        yield return new WaitForSeconds(((hexagonsToAdd.Count + 1) * .12f) + .3f);
         yield return CheckForCompleteStacks(gridCell, gridCellTopHexagonColor);
     }
 
@@ -70,7 +70,7 @@ public class MergeManager : MonoBehaviour
         {
             similarHexaongs[0].SetParent(null);
             similarHexaongs[0].Vanish(delay);
-            delay += .1f;
+            delay += .05f;
             //DestroyImmediate(similarHexaongs[0].gameObject);
             gridCell.Stack.Remove(similarHexaongs[0]);
             similarHexaongs.RemoveAt(0);
@@ -88,9 +88,9 @@ public class MergeManager : MonoBehaviour
             Hexagon hexagon = hexagonsToAdd[i];
             float targetY = initalY + (i * .2f);
             Vector3 targetLocalPosition = Vector3.up * targetY;
-
             gridCell.Stack.Add(hexagon);
-            hexagon.MoveToLocal(targetLocalPosition);
+            hexagon.MoveToLocal(targetLocalPosition, i);
+
         }
     }
 
@@ -158,6 +158,7 @@ public class MergeManager : MonoBehaviour
 
         foreach (Collider gridCellCllider in neighborCells)
         {
+            Debug.Log($"{gridCellCllider.name}");
             GridCell neighborCell = gridCellCllider.GetComponentInParent<GridCell>();
             if (!neighborCell.IsOccupied)
                 continue;

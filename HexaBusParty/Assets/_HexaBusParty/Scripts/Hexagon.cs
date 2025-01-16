@@ -34,21 +34,20 @@ public class Hexagon : MonoBehaviour
         transform.SetParent(parent);
     }
 
-    public void MoveToLocal(Vector3 targetLocalPosition)
+    public void MoveToLocal(Vector3 targetLocalPosition, int position)
     {
-        LeanTween.moveLocal(gameObject, targetLocalPosition, .2f).setEase(LeanTweenType.easeInOutSine)
-            .setDelay(transform.GetSiblingIndex() * .1f);
-
-        Vector3 direction = (targetLocalPosition - transform.localPosition).normalized.With(y: 0);
+        LeanTween.moveLocal(gameObject, targetLocalPosition, .3f).setEase(LeanTweenType.easeInOutSine)
+            .setDelay(position* .12f);
+        Vector3 direction = (targetLocalPosition - transform.localPosition).With(y: 0).normalized;
         Vector3 rotationAxis = Vector3.Cross(Vector3.up, direction);
         LeanTween.rotateAroundLocal(gameObject, rotationAxis, 180, .2f).setEase(LeanTweenType.easeInOutSine)
-            .setDelay(transform.GetSiblingIndex() * .1f);
+            .setDelay(position * .12f);
     }
 
     public void Vanish(float delay)
     {
         LeanTween.cancel(gameObject);
-        LeanTween.scale(gameObject, Vector3.zero, 0.2f).setDelay(delay).setEase(LeanTweenType.easeInBack)
+        LeanTween.scale(gameObject, Vector3.zero, 0.2f).setDelay(delay).setEase(LeanTweenType.easeInSine)
             .setOnComplete(() => Destroy(gameObject));
     }
 }

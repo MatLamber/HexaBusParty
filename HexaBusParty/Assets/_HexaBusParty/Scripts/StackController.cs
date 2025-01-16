@@ -55,7 +55,7 @@ public class StackController : MonoBehaviour
     private void ManageMouseDrag()
     {
         RaycastHit hit;
-        Physics.Raycast(GetClickedRay(), out hit, 500, gridHexagonLayer);
+        Physics.Raycast(GetClickedRay(), out hit, 1000, gridHexagonLayer);
         if (hit.collider == null)
         {
             DraggingAboveGround();
@@ -68,6 +68,7 @@ public class StackController : MonoBehaviour
 
     private void DraggingAboveCell(RaycastHit hit)
     {
+        Debug.Log($"Hit collider {hit.collider.name}");
         GridCell gridCell = hit.collider.GetComponentInParent<GridCell>();
         if (gridCell.IsOccupied)
         {
